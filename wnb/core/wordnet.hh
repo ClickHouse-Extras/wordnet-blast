@@ -1,5 +1,4 @@
-#ifndef _WORDNET_HH
-# define _WORDNET_HH
+#pragma once
 
 # include <iostream>
 # include <string>
@@ -89,9 +88,14 @@ namespace wnb
     std::vector<synset> get_synsets(const std::string& word, pos_t pos = pos_t::UNKNOWN);
     //FIXME: todo
     std::vector<synset> get_synset(const std::string& word, char pos, int i);
+    // added
+    const std::vector<std::string> * get_synset(const std::string& word, pos_t pos = pos_t::UNKNOWN) const;
 
     std::pair<std::vector<index>::iterator, std::vector<index>::iterator>
     get_indexes(const std::string& word);
+
+    std::pair<std::vector<index>::const_iterator, std::vector<index>::const_iterator>
+    get_indexes_const(const std::string& word) const;
 
     std::string wordbase(const std::string& word, int ender);
 
@@ -107,6 +111,3 @@ namespace wnb
   };
 
 } // end of namespace wnb
-
-#endif /* _WORDNET_HH */
-

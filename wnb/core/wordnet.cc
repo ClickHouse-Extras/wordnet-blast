@@ -30,7 +30,8 @@ namespace wnb
       std::cout << "nb_synsets: " << info.nb_synsets() << std::endl;
     }
     //FIXME: this check is only valid for Wordnet 3.0
-    assert(info.nb_synsets() == 142335);//117659);
+    //assert(info.nb_synsets() == 142335);//117659);
+    assert(info.nb_synsets() > 0);
   }
 
   std::vector<synset>
@@ -61,6 +62,36 @@ namespace wnb
     }
 
     return synsets;
+  }
+
+  const std::vector<std::string> *
+  wordnet::get_synset(const std::string& word, pos_t pos) const {
+    
+    typedef std::vector<index> vi;
+    std::pair<vi::const_iterator,vi::const_iterator> bounds = get_indexes_const(word);
+
+    for (vi::const_iterator it = bounds.first; it != bounds.second; it++)
+    {
+      if (pos == pos_t::UNKNOWN || it->pos == pos)
+      {
+        int id = it->synset_ids[0];
+        return &wordnet_graph[id].words;
+      }
+    }
+    return nullptr;
+  }
+
+  std::pair<std::vector<index>::const_iterator, std::vector<index>::const_iterator>
+  wordnet::get_indexes_const(const std::string& word) const
+  {
+    index light_index;
+    light_index.lemma = word;
+
+    typedef std::vector<index> vi;
+    std::pair<vi::const_iterator,vi::const_iterator> bounds =
+      std::equal_range(index_list.begin(), index_list.end(), light_index);
+
+    return bounds;
   }
 
   std::pair<std::vector<index>::iterator, std::vector<index>::iterator>

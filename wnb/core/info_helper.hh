@@ -1,5 +1,4 @@
-#ifndef _INFO_HELPER_HH
-# define _INFO_HELPER_HH
+#pragma once
 
 # include <string>
 # include <stdexcept>
@@ -42,13 +41,13 @@ namespace wnb
 
       return sum;
       //return adj_map.size() + adv_map.size() + noun_map.size() + verb_map.size();
-    };
+    }
 
     // Given a pos return the starting indice in the graph
     int get_indice_offset(pos_t pos)
     {
       return indice_offset[pos];
-    };
+    }
 
     /// Helper function computing global indice in graph from local offset
     int compute_indice(int offset, pos_t pos);
@@ -84,6 +83,3 @@ namespace wnb
   info_helper preprocess_wordnet(const std::string& dn);
 
 } // end of namespace wncpp
-
-#endif /* _INFO_HELPER_HH */
-

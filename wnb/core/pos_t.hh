@@ -1,5 +1,4 @@
-#ifndef _POS_T_HH
-# define _POS_T_HH
+#pragma once
 
 namespace wnb
 {
@@ -60,7 +59,3 @@ namespace wnb
   }
 
 } // end of namespace wncpp
-
-
-#endif /* _POS_T_HH */
-
