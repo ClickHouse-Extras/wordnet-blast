@@ -1,3 +1,11 @@
+Wordnet Blast
+
+Source: https://github.com/jardon-u/wordnet-blast
+Changed:
+- removed check for synsets amount
+- added function that returns pointer to the first found synset: const std::vector<std::string> * wordnet::get_synset(const std::string& word, pos_t pos) const
+
+Original README:
 
 =====================================================================
           WordNet Blast
